@@ -3,7 +3,7 @@ These mockups have been created with HTML/CSS.
 
 
 **Breakdown of Folders:**
-  - The **Mockups** folder is for all mockups designed, regardless if approved or not for building.
+  - The **Code** folder is for all code (HTML/CSS) for the mockup.
   - The **Approved** folder is for mockups that were approved to be used for the UI to be built.
 
 
