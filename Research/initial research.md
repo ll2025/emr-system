@@ -1,4 +1,4 @@
-# Initial Research on EHR's
+# Initial Research on EHR's for Ophthalmology 
 
 ## Basic Terminology 
 EHR = electronic health record that can be shared among many systems, practices, facilities, and more.
