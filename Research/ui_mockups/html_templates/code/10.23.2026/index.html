@@ -1,0 +1,157 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Optometry EHR</title>
+    <!-- <link rel="stylesheet" href="style.css" /> -->
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        background-color: #f4f4f4;
+        color: #333;
+      }
+      .container {
+        max-width: 800px;
+        margin: auto;
+        background: #fff;
+        padding: 20px;
+        border: 1px solid #ccc;
+      }
+      h1,
+      h2 {
+        border-bottom: 2px solid #ccc;
+        padding-bottom: 5px;
+      }
+
+      /* INPUT + TEXT FORMAT */
+      .form-group {
+        margin-bottom: 15px;
+      }
+      label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+      input[type="text"],
+      input[type="date"],
+      textarea,
+      select {
+        width: 100%;
+        padding: 8px;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+      }
+      textarea {
+        height: 80px;
+      }
+
+      /* TABLE Misc. */
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 15px;
+      }
+      th,
+      td {
+        border: 1px solid #ccc;
+        padding: 8px;
+        text-align: center;
+      }
+      th {
+        background-color: #eee;
+      }
+
+      /* BUTTONS */
+      button {
+        padding: 10px 15px;
+        background-color: #0066cc;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #004999;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Optometry Patient EHR</h1>
+
+      <!-- ----------------------------------------- PATIENT DEMOGRAPHICS + INFO ----------------------------------------- -->
+      <div class="form-group">
+        <label>Patient Name</label>
+        <input type="text" value="John Doe" />
+      </div>
+      <div class="form-group">
+        <label>Patient ID</label>
+        <input type="text" value="00123" />
+      </div>
+      <div class="form-group">
+        <label>Age</label>
+        <input type="text" value="45" />
+      </div>
+      <div class="form-group">
+        <label>Birth Date</label>
+        <input type="date" value="1981-05-14" />
+      </div>
+      <div class="form-group">
+        <label>Sex</label>
+        <select>
+          <option value="Male" selected>Male</option>
+          <option value="Female">Female</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Allergies</label>
+        <input type="text" value="None known" />
+      </div>
+
+      <!-- ----------------------------------------- CHIEF COMPLAINT ----------------------------------------- -->
+      <h2>Chief Complaint</h2>
+      <div class="form-group">
+        <label>Reason for Visit</label>
+        <textarea placeholder="Chief Complaint"></textarea>
+      </div>
+
+      <!-- ----------------------------------------- VISUAL STATUS ----------------------------------------- -->
+      <h2>Visual Status/Acuity</h2>
+      <table>
+        <tr>
+          <th>Eye</th>
+          <th>Unaided</th>
+          <th>Aided</th>
+        </tr>
+        <tr>
+          <td><strong>OD (Right)</strong></td>
+          <td><input type="text" value="20/20" /></td>
+          <td><input type="text" value="20/20" /></td>
+        </tr>
+        <tr>
+          <td><strong>OS (Left)</strong></td>
+          <td><input type="text" value="20/25" /></td>
+          <td><input type="text" value="20/20" /></td>
+        </tr>
+      </table>
+
+      <!-- ----------------------------------------- EXAMINATION ----------------------------------------- -->
+      <h2>Assessment & Plan</h2>
+      <div class="form-group">
+        <label>Diagnosis</label>
+        <input type="text" placeholder="Diagnosis" />
+      </div>
+      <div class="form-group">
+        <label>Treatment Notes</label>
+        <textarea placeholder="Plan and Follow-Up Notes"></textarea>
+      </div>
+
+      <!-- ----------------------------------------- SUBMIT THE PATIENT RECORD ----------------------------------------- -->
+      <button onclick="alert('Patient Record has been Submitted and Saved.')">
+        Save Record
+      </button>
+    </div>
+  </body>
+</html>
