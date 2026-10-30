@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Optometry EHR - Scheduler</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        background-color: #f7f9fa;
+        color: #2f3e46;
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+      }
+
+      .top-bar {
+        height: 50px;
+        background-color: #ffffff;
+        border-bottom: 1px solid #d0d7de;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 20px;
+        font-weight: bold;
+        color: #3b5998;
+        flex-shrink: 0;
+      }
+
+      .layout-container {
+        display: flex;
+        flex-grow: 1;
+        overflow: hidden;
+      }
+
+      .sidebar {
+        width: 220px;
+        background-color: #34495e;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        flex-shrink: 0;
+      }
+
+      .sidebar h2 {
+        font-size: 1.1rem;
+        padding: 20px;
+        margin: 0;
+        border-bottom: 2px solid #2c3e50;
+        color: #ecf0f1;
+        text-align: center;
+      }
+
+      .sidebar a {
+        padding: 15px 20px;
+        color: #b0c4de;
+        display: block;
+        text-decoration: none;
+        border-bottom: 1px solid #2c3e50;
+        transition:
+          background 0.2s,
+          color 0.2s;
+      }
+
+      .sidebar a:hover,
+      .sidebar a.active-link {
+        background-color: #4a6fa5;
+        color: white;
+      }
+
+      .main-content {
+        flex-grow: 1;
+        overflow-y: auto;
+        padding: 30px;
+        display: flex;
+        justify-content: center;
+      }
+
+      .page {
+        max-width: 1000px;
+        width: 100%;
+        background: #fff;
+        padding: 40px;
+        border: 1px solid #d0d7de;
+        height: fit-content;
+        margin-bottom: 40px;
+      }
+
+      h1,
+      h2 {
+        border-bottom: 2px solid #e1e8ed;
+        padding-bottom: 8px;
+        margin-top: 0;
+        color: #3b5998;
+      }
+
+      p {
+        color: #555;
+        font-size: 1.1rem;
+        margin-bottom: 10px;
+      }
+
+      .scheduler-layout {
+        display: flex;
+        gap: 30px;
+        align-items: flex-start;
+      }
+
+      .calendar-column {
+        flex: 1.2;
+        background: #fff;
+        border: 1px solid #d0d7de;
+      }
+
+      .form-column {
+        flex: 1;
+        background: #f4f7f9;
+        border: 1px solid #d8e2ec;
+        padding: 20px;
+      }
+
+      .month {
+        padding: 20px 25px;
+        background: #4a6fa5;
+        color: white;
+        text-align: center;
+      }
+
+      .month ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .month li {
+        font-size: 20px;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+      }
+
+      .weekdays {
+        margin: 0;
+        padding: 10px 0;
+        background-color: #eef3f7;
+        list-style: none;
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        text-align: center;
+      }
+
+      .weekdays li {
+        color: #3b5998;
+        font-weight: bold;
+        font-size: 0.85rem;
+      }
+
+      .days {
+        padding: 10px;
+        background: #f9fbfe;
+        margin: 0;
+        list-style: none;
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 5px;
+        min-height: 260px;
+      }
+
+      .days li {
+        list-style-type: none;
+        text-align: center;
+        padding: 12px 0;
+        font-size: 1rem;
+        color: #444;
+        background: #fff;
+        border: 1px solid #d8e2ec;
+      }
+
+      .days li.other-month {
+        color: #aaa;
+        background: #f4f6f8;
+      }
+
+      .days li.active {
+        background: #3b5998;
+        color: white !important;
+        font-weight: bold;
+      }
+
+      .form-group {
+        margin-bottom: 15px;
+      }
+
+      label {
+        display: block;
+        font-weight: bold;
+        font-size: 0.85rem;
+        margin-bottom: 5px;
+        color: #3b5998;
+      }
+
+      input[type="text"],
+      input[type="date"],
+      input[type="time"],
+      select {
+        width: 100%;
+        padding: 8px;
+        box-sizing: border-box;
+        border: 1px solid #b0c4de;
+        background-color: #fff;
+      }
+
+      button {
+        padding: 10px 15px;
+        background-color: #4a6fa5;
+        color: white;
+        border: none;
+        cursor: pointer;
+        font-weight: bold;
+      }
+
+      button:hover {
+        background-color: #3b5998;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="top-bar">
+      <span>Appointment Scheduler</span>
+      <span>October 30, 2026</span>
+    </div>
+
+    <div class="layout-container">
+      <div class="sidebar">
+        <h2>Optometry EHR</h2>
+        <nav>
+          <a href="index.html">Home</a>
+          <a href="scheduler.html" class="active-link">Scheduler</a>
+          <a href="checkin.html">Check-In</a>
+          <a href="examination.html">Examination</a>
+        </nav>
+      </div>
+
+      <div class="main-content">
+        <div id="scheduler" class="page">
+          <h1>Appointment Scheduler</h1>
+          <div class="scheduler-layout">
+            <!--display calendar (left side of page)-->
+            <div class="calendar-column">
+              <div class="month">
+                <ul>
+                  <li class="prev">&#10094;</li>
+                  <li class="next">&#10095;</li>
+                  <li>
+                    October<br /><span style="font-size: 14px">2026</span>
+                  </li>
+                </ul>
+              </div>
+
+              <ul class="weekdays">
+                <li>Mo</li>
+                <li>Tu</li>
+                <li>We</li>
+                <li>Th</li>
+                <li>Fr</li>
+                <li>Sa</li>
+                <li>Su</li>
+              </ul>
+
+              <ul class="days">
+                <li class="other-month">28</li>
+                <li class="other-month">29</li>
+                <li class="other-month">30</li>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+                <li>5</li>
+                <li>6</li>
+                <li>7</li>
+                <li>8</li>
+                <li>9</li>
+                <li>10</li>
+                <li>11</li>
+                <li>12</li>
+                <li>13</li>
+                <li>14</li>
+                <li>15</li>
+                <li>16</li>
+                <li>17</li>
+                <li>18</li>
+                <li>19</li>
+                <li>20</li>
+                <li>21</li>
+                <li>22</li>
+                <li>23</li>
+                <li>24</li>
+                <li>25</li>
+                <li>26</li>
+                <li>27</li>
+                <li>28</li>
+                <li>29</li>
+                <li class="active">30</li>
+                <li>31</li>
+                <li class="other-month">1</li>
+                <li class="other-month">2</li>
+                <li class="other-month">3</li>
+                <li class="other-month">4</li>
+                <li class="other-month">5</li>
+                <li class="other-month">6</li>
+                <li class="other-month">7</li>
+                <li class="other-month">8</li>
+              </ul>
+            </div>
+
+            <!--scheduling a patient (right side of page)-->
+            <div class="form-column">
+              <h2>New Appointment</h2>
+              <div class="form-group">
+                <label>Patient Name</label>
+                <input
+                  type="text"
+                  id="patient-name"
+                  placeholder="Enter patient name"
+                />
+              </div>
+              <div class="form-group">
+                <label>Appointment Date</label>
+                <input type="date" id="appointment-date" value="2026-10-30" />
+              </div>
+              <div class="form-group">
+                <label>Appointment Time</label>
+                <input type="time" value="10:00" />
+              </div>
+              <div class="form-group">
+                <label>Appointment Type</label>
+                <select>
+                  <option value="Comprehensive">Comprehensive Exam</option>
+                  <option value="FollowUp">Follow-up</option>
+                  <option value="ContactLens">Contact Lens Fitting</option>
+                </select>
+              </div>
+              <button
+                type="button"
+                onclick="alert('Appointment booked successfully!');"
+              >
+                Book Appointment
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
