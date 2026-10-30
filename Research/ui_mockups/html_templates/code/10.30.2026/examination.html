@@ -1,0 +1,611 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Optometry EHR - Examination</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        background-color: #f7f9fa;
+        color: #2f3e46;
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+      }
+
+      .top-bar {
+        height: 50px;
+        background-color: #ffffff;
+        border-bottom: 1px solid #d0d7de;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 20px;
+        font-weight: bold;
+        color: #3b5998;
+        flex-shrink: 0;
+      }
+
+      .layout-container {
+        display: flex;
+        flex-grow: 1;
+        overflow: hidden;
+      }
+
+      .sidebar {
+        width: 220px;
+        background-color: #34495e;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        flex-shrink: 0;
+      }
+
+      .sidebar h2 {
+        font-size: 1.1rem;
+        padding: 20px;
+        margin: 0;
+        border-bottom: 2px solid #2c3e50;
+        color: #ecf0f1;
+        text-align: center;
+      }
+
+      .sidebar a {
+        padding: 15px 20px;
+        color: #b0c4de;
+        display: block;
+        text-decoration: none;
+        border-bottom: 1px solid #2c3e50;
+        transition:
+          background 0.2s,
+          color 0.2s;
+      }
+
+      .sidebar a:hover,
+      .sidebar a.active-link {
+        background-color: #4a6fa5;
+        color: white;
+      }
+
+      .main-content {
+        flex-grow: 1;
+        overflow-y: auto;
+        padding: 30px;
+        display: flex;
+        justify-content: center;
+      }
+
+      .page {
+        max-width: 1050px;
+        width: 100%;
+        background: #fff;
+        padding: 40px;
+        border: 1px solid #d0d7de;
+        height: fit-content;
+        margin-bottom: 40px;
+      }
+
+      h2,
+      h3 {
+        border-bottom: 2px solid #e1e8ed;
+        padding-bottom: 8px;
+        margin-top: 25px;
+        color: #3b5998;
+      }
+
+      .exam-section {
+        background: #f9fbfe;
+        border: 1px solid #d8e2ec;
+        padding: 20px;
+        margin-bottom: 20px;
+      }
+
+      .exam-section h3 {
+        margin-top: 0;
+        color: #3b5998;
+        border-bottom: 1px solid #e1e8ed;
+        padding-bottom: 6px;
+      }
+
+      .form-row {
+        display: flex;
+        gap: 15px;
+        margin-bottom: 15px;
+      }
+
+      .form-group {
+        flex: 1;
+        margin-bottom: 10px;
+      }
+
+      label {
+        display: block;
+        font-weight: bold;
+        font-size: 0.85rem;
+        margin-bottom: 5px;
+        color: #3b5998;
+      }
+
+      input[type="text"],
+      input[type="date"],
+      input[type="time"],
+      select,
+      textarea {
+        width: 100%;
+        padding: 8px;
+        box-sizing: border-box;
+        border: 1px solid #b0c4de;
+        background-color: #fff;
+        font-size: 0.9rem;
+      }
+
+      textarea {
+        resize: vertical;
+        height: 70px;
+      }
+
+      .checkbox-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 10px;
+        margin-top: 5px;
+      }
+
+      .checkbox-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.9rem;
+      }
+
+      button.save-btn {
+        padding: 12px 25px;
+        background-color: #4a6fa5;
+        color: white;
+        border: none;
+        font-weight: bold;
+        cursor: pointer;
+        font-size: 1rem;
+        margin-top: 20px;
+      }
+
+      button.save-btn:hover {
+        background-color: #3b5998;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="top-bar">
+      <span>Comprehensive Eye Examination</span>
+      <span>October 30, 2026</span>
+    </div>
+
+    <div class="layout-container">
+      <div class="sidebar">
+        <h2>Optometry EHR</h2>
+        <nav>
+          <a href="index.html">Home</a>
+          <a href="scheduler.html">Scheduler</a>
+          <a href="checkin.html">Check-In</a>
+          <a href="examination.html" class="active-link">Examination</a>
+        </nav>
+      </div>
+
+      <div class="main-content">
+        <div id="examination" class="page">
+          <!--Pediatric screening-->
+          <div
+            class="exam-section"
+            style="background: #f0f4f8; border-color: #b0c4de; margin-top: 0"
+          >
+            <h3>GENERAL PEDIATRIC SCREENING</h3>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Location</label>
+                <input type="text" value="SHT211" />
+              </div>
+              <div class="form-group">
+                <label>Exam date</label>
+                <input type="date" value="2026-07-22" />
+              </div>
+              <div class="form-group">
+                <label>Age</label>
+                <input type="text" value="126Y 6M 22D" />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Orientation Category</label>
+                <select>
+                  <option value="General">GENERAL PEDIATRIC SCREENING</option>
+                  <option value="School">
+                    School / Hospital Pediatric Screening
+                  </option>
+                  <option value="Glaucoma">
+                    Glaucoma or General Screening
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!--Screening-->
+          <div class="exam-section">
+            <h3>SCREENING RECOMMENDATION</h3>
+            <div class="form-row">
+              <div class="form-group">
+                <label
+                  >REFRACTIVE DIAGNOSIS (Date / Plan / FU / Lunette Vendre /
+                  Lunette Prix / Comment)</label
+                >
+                <input
+                  type="text"
+                  placeholder="Refractive diagnosis & plan details"
+                />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label
+                  >MEDICAL DIAGNOSIS & PLAN (Med Dose Jour Depanse /
+                  Inject-Las-Lab-Test / Referrral / FU / Comment)</label
+                >
+                <textarea
+                  placeholder="Medical diagnosis, medication doses, and follow-up plan..."
+                ></textarea>
+              </div>
+            </div>
+          </div>
+
+          <!--Injection + lasers-->
+          <div class="exam-section">
+            <h3>INJECTION & LASERS</h3>
+            <div class="form-row">
+              <div class="form-group">
+                <label>INJECTION (Date: AE, OD / OG)</label>
+                <input
+                  type="text"
+                  placeholder="Injection dates and adverse effects (AE)"
+                />
+              </div>
+              <div class="form-group">
+                <label>LASERS (Date, Energy Shot/Pulse, OD / OG)</label>
+                <input
+                  type="text"
+                  placeholder="Laser parameters, energy, shots"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!--Chief complaint-->
+          <div class="exam-section">
+            <h3>CHIEF COMPLAINT</h3>
+            <div class="form-row">
+              <div class="form-group">
+                <label
+                  >Location / Onset Date / Onset Duration / Frequency / Severity
+                  / Factor / Associate / Tx avant</label
+                >
+                <textarea
+                  placeholder="Enter chief complaint and symptom parameters..."
+                ></textarea>
+              </div>
+            </div>
+          </div>
+
+          <!--Ocular history-->
+          <div class="exam-section">
+            <h3>OCULAR HISTORY</h3>
+            <div class="form-row">
+              <div class="form-group">
+                <label>GTT JE (Nom gtt, Start Date, Dernier Dose, Gtt)</label>
+                <input type="text" placeholder="Ocular drops history..." />
+              </div>
+              <div class="form-group">
+                <label>Pouler exam je?</label>
+                <select>
+                  <option value="Yes">Yes</option>
+                  <option value="No">No</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Porte lunette?</label>
+                <select>
+                  <option value="Yes">Yes</option>
+                  <option value="No">No</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Symptômes Oculaires</label>
+                <input
+                  type="text"
+                  placeholder="Doulè, Klè a lwen, Wouj, Klè a pres, Grate, Flashes, Brile, Floaters, Dlo, Diplopia"
+                />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label
+                  >Trauma & SURGERY JE (Date OD/OG, History of injection,
+                  History of lasers)</label
+                >
+                <input
+                  type="text"
+                  placeholder="Surgical history and trauma records"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!--Other Medical history-->
+          <div class="exam-section">
+            <h3>MEDICAL HISTORY</h3>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Poid / Blood Pressure / Protienuria / Glycemie</label>
+                <input
+                  type="text"
+                  placeholder="Weight, BP, protein, glucose values"
+                />
+              </div>
+              <div class="form-group">
+                <label
+                  >EGAPoids / NICU Jours Oxygen / MHxRisk / Development / Egzam
+                  kò</label
+                >
+                <input
+                  type="text"
+                  placeholder="NICU, development, and general exam"
+                />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label
+                  >ROP (Rampe Marche Parle / Denye lab OD ROP Zone Stage Plus Tx
+                  / Ansent OG)</label
+                >
+                <input type="text" placeholder="ROP screening & lab notes" />
+              </div>
+              <div class="form-group">
+                <label>ONSET / Systemic Conditions</label>
+                <input
+                  type="text"
+                  placeholder="Eclampsia/PreAsthma, Maladie 1, HTN, Sickle Cell, Diabetes, Pwoblèm kè, Syphilis, Kolestewol wo, VIH, TBS Meds 1/2/3"
+                />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label
+                  >ALLERGY (Agent 1, Reaction 1, Agent 2, Reaction 2)</label
+                >
+                <input type="text" placeholder="Allergy agents and reactions" />
+              </div>
+              <div class="form-group">
+                <label
+                  >FAMILY HISTORY (FOHx / FMHx / Condition / Relative /
+                  Comment)</label
+                >
+                <input
+                  type="text"
+                  placeholder="Family ocular and medical history"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!--Examinations (misc.)-->
+          <div class="exam-section">
+            <h3>EXAM</h3>
+            <div class="form-row">
+              <div class="form-group">
+                <label
+                  >Red Reflex (Bruckner) / VA / Pupil / CT / Corneal Light
+                  Reflex (Hirschberg) / Motility / NPC</label
+                >
+                <input
+                  type="text"
+                  placeholder="Entrance test results OU / OD / OS"
+                />
+              </div>
+              <div class="form-group">
+                <label
+                  >External & Ant Seg / Retinoscopy / Direct
+                  Ophthalmoscopy</label
+                >
+                <input
+                  type="text"
+                  placeholder="Anterior segment and ophthalmoscopy findings"
+                />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label
+                  >Color Vision (male) / Stereoacuity (binocularity) / Plus Lens
+                  Test OU</label
+                >
+                <input
+                  type="text"
+                  placeholder="Color vision and stereo results"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!--Refraction section-->
+          <div class="exam-section">
+            <h3>REFRACTION</h3>
+            <div class="form-row">
+              <div class="form-group">
+                <label
+                  >Dry Retinoscopy / Post DFE Ret / Cycloplegic Ret / MEM Ret
+                  (OD/OG)</label
+                >
+                <input type="text" placeholder="Retinoscopy results and VA" />
+              </div>
+              <div class="form-group">
+                <label>Subjective Refraction / Final Refraction</label>
+                <input
+                  type="text"
+                  placeholder="Rx, Add, VA/Modifier, Prism/Base, RX Dispense (Far/Near)"
+                />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label
+                  >Vergence / Convergence Range / Divergence Range /
+                  Accommodative Amp</label
+                >
+                <input type="text" placeholder="Binocular vision metrics" />
+              </div>
+            </div>
+          </div>
+
+          <!--Slit Lamp Exam-->
+          <div class="exam-section">
+            <h3>SLIT LAMP EXAM</h3>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Lymphadenopathy & Slit Lamp Note</label>
+                <textarea
+                  placeholder="Anterior segment examination notes..."
+                ></textarea>
+              </div>
+              <div class="form-group">
+                <label>Van Harrick Angle (OD / OG)</label>
+                <select>
+                  <option value="4x4">4x4 (Wide Open)</option>
+                  <option value="3x3">3x3 (Open)</option>
+                  <option value="2x2">2x2 (Narrow)</option>
+                  <option value="1x1">1x1 (Closed)</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label
+                  >Intraocular Pressure (DateTime, OD, OG, Meds, Start/Last Dose
+                  Date, Target OD/OG)</label
+                >
+                <input
+                  type="text"
+                  placeholder="IOP measurements and target pressures"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!--Fundus section-->
+          <div class="exam-section">
+            <h3>FUNDUS</h3>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Fundus Note (OD / OG)</label>
+                <textarea
+                  placeholder="Posterior segment, optic nerve, macula, periphery findings..."
+                ></textarea>
+              </div>
+            </div>
+          </div>
+
+          <!--Other misc. tests-->
+          <div class="exam-section">
+            <h3>ADDITIONAL TESTS</h3>
+            <div class="checkbox-grid">
+              <label class="checkbox-item"
+                ><input type="checkbox" /> Gonioscopy (Angle, Pigment,
+                PAS)</label
+              >
+              <label class="checkbox-item"
+                ><input type="checkbox" /> OCT Optic Nerve & Macula</label
+              >
+              <label class="checkbox-item"
+                ><input type="checkbox" /> Visual Field</label
+              >
+              <label class="checkbox-item"
+                ><input type="checkbox" /> Pachymetry</label
+              >
+              <label class="checkbox-item"
+                ><input type="checkbox" /> Color Vision (PseudoIsochromatic
+                Plate)</label
+              >
+              <label class="checkbox-item"
+                ><input type="checkbox" /> B-Scan / A-Scan Ultrasound</label
+              >
+              <label class="checkbox-item"
+                ><input type="checkbox" /> Exophthalmometry</label
+              >
+              <label class="checkbox-item"
+                ><input type="checkbox" /> Keratometry & IOL Calculation</label
+              >
+              <label class="checkbox-item"
+                ><input type="checkbox" /> Amsler Grid</label
+              >
+            </div>
+          </div>
+
+          <!--Labs + results-->
+          <div class="exam-section">
+            <h3>LABORATOIRE: HEMATOLOGIE, BIOCHIMIE & EXAMENS</h3>
+            <div class="form-row">
+              <div class="form-group">
+                <label
+                  >HEMATOLOGIE (WBC, RBC, Hemoglobine, Hematocrite, VGM, TCMH,
+                  CCMH, PLAQ, LYMPHO, Vitesse de CED)</label
+                >
+                <input
+                  type="text"
+                  placeholder="Hematology lab results and blood counts..."
+                />
+              </div>
+              <div class="form-group">
+                <label
+                  >BIOCHIMIE (Glycemie, UREE, Creat, CHOL, HDL, LDL, Trigly,
+                  Amylase, Bilirubine, Alat, GGT, K+, NA)</label
+                >
+                <input
+                  type="text"
+                  placeholder="Blood chemistry test values..."
+                />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label
+                  >EXAMENS PARASITOLOGIQUES, SELLES, CYTOBACTERIOLOGIE &
+                  URINES</label
+                >
+                <input
+                  type="text"
+                  placeholder="Malaria, Selles, Gram Stain, Urinalysis findings..."
+                />
+              </div>
+              <div class="form-group">
+                <label>Montoux (PPD TB), X-Ray & CT Scan</label>
+                <input
+                  type="text"
+                  placeholder="Date, Results, Size, Comments"
+                />
+              </div>
+            </div>
+          </div>
+
+          <button
+            type="button"
+            class="save-btn"
+            onclick="alert('Examination record saved successfully!');">
+            Save Examination Record
+          </button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
