@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Optometry EHR - Check-In</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        background-color: #f7f9fa;
+        color: #2f3e46;
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+      }
+
+      .top-bar {
+        height: 50px;
+        background-color: #ffffff;
+        border-bottom: 1px solid #d0d7de;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 20px;
+        font-weight: bold;
+        color: #3b5998;
+        flex-shrink: 0;
+      }
+
+      .layout-container {
+        display: flex;
+        flex-grow: 1;
+        overflow: hidden;
+      }
+
+      .sidebar {
+        width: 220px;
+        background-color: #34495e;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        flex-shrink: 0;
+      }
+
+      .sidebar h2 {
+        font-size: 1.1rem;
+        padding: 20px;
+        margin: 0;
+        border-bottom: 2px solid #2c3e50;
+        color: #ecf0f1;
+        text-align: center;
+      }
+
+      .sidebar a {
+        padding: 15px 20px;
+        color: #b0c4de;
+        display: block;
+        text-decoration: none;
+        border-bottom: 1px solid #2c3e50;
+        transition:
+          background 0.2s,
+          color 0.2s;
+      }
+
+      .sidebar a:hover,
+      .sidebar a.active-link {
+        background-color: #4a6fa5;
+        color: white;
+      }
+
+      .main-content {
+        flex-grow: 1;
+        overflow-y: auto;
+        padding: 30px;
+        display: flex;
+        justify-content: center;
+      }
+
+      .page {
+        max-width: 950px;
+        width: 100%;
+        background: #fff;
+        padding: 40px;
+        border: 1px solid #d0d7de;
+        height: fit-content;
+        margin-bottom: 40px;
+      }
+
+      h1 {
+        margin-top: 0;
+        color: #3b5998;
+        border-bottom: 2px solid #e1e8ed;
+        padding-bottom: 10px;
+      }
+
+      .form-section {
+        background: #f4f7f9;
+        border: 1px solid #d8e2ec;
+        padding: 20px;
+        margin-top: 20px;
+      }
+
+      .form-group {
+        margin-bottom: 15px;
+      }
+
+      label {
+        display: block;
+        font-weight: bold;
+        font-size: 0.85rem;
+        margin-bottom: 5px;
+        color: #3b5998;
+      }
+
+      input,
+      select {
+        width: 100%;
+        padding: 8px;
+        box-sizing: border-box;
+        border: 1px solid #b0c4de;
+        background-color: #fff;
+      }
+
+      button.save-btn {
+        padding: 10px 20px;
+        background-color: #4a6fa5;
+        color: white;
+        border: none;
+        font-weight: bold;
+        cursor: pointer;
+      }
+
+      button.save-btn:hover {
+        background-color: #3b5998;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="top-bar">
+      <span>Patient Check-In</span>
+      <span>October 30, 2026</span>
+    </div>
+
+    <div class="layout-container">
+      <div class="sidebar">
+        <h2>Optometry EHR</h2>
+        <nav>
+          <a href="index.html">Home</a>
+          <a href="scheduler.html">Scheduler</a>
+          <a href="checkin.html" class="active-link">Check-In</a>
+          <a href="examination.html">Examination</a>
+        </nav>
+      </div>
+
+      <div class="main-content">
+        <div class="page">
+          <h1>Check-In</h1>
+          <div class="form-section">
+            <h3>Initial Vitals & Demographics</h3>
+            <div class="form-group">
+              <label>Patient ID / Name</label>
+              <input type="text" placeholder="Search patient..." />
+            </div>
+            <div class="form-group">
+              <label>Weight (Poid / weight)</label>
+              <input type="text" placeholder="Enter weight" />
+            </div>
+            <div class="form-group">
+              <label>Blood Pressure</label>
+              <input type="text" placeholder="e.g., 120/80" />
+            </div>
+            <button
+              type="button"
+              class="save-btn"
+              onclick="alert('Patient checked in successfully!');">
+              Complete Check-In
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
